@@ -1,6 +1,7 @@
 import gerardoImg1 from "./images/gerardo.png";
 import gerardoImg2 from "./images/gerardo-2.png";
 import inventoryImg from "./images/inventory.png";
+import cultivoImg from "./images/cultivo.png";
 
 const PIXEL_DRAW_LIVE_URL =
   "https://pixel-draw-demo-n4j56a7mf-brahiancarreras-projects.vercel.app/";
@@ -8,32 +9,26 @@ const PIXEL_DRAW_LIVE_URL =
 const INVENTORY_LIVE_URL =
   "https://management-system-poc-frontend.vercel.app/";
 
+const MI_CULTIVO_LIVE_URL =
+  "https://io-t-project-5cfj5ar4y-brahiancarreras-projects.vercel.app/";
+
 const projects = [
   {
-    name: "Gerardo App",
+    name: "Inventory Management",
     description:
-      "App para llevar el tracking de la alimentacion de personas de la tercera edad en centros asistenciales. Un medico y los encargados de los pacientes tienen asignadas dietas para que los tres roles puedan controlar la alimentacion del paciente.",
-    technologies: ["React Native", "Expo", "Supabase"],
-    images: [
-      {
-        src: gerardoImg1,
-        alt: "Gerardo App - Pantalla de inicio de sesión",
-      },
-      {
-        src: gerardoImg2,
-        alt: "Gerardo App - Perfil de usuario y navegación",
-      },
+      "Proof of concept de un sistema de gestion de inventario con dashboard, CRUD de productos, categorias y productores, y registro de ventas con deduccion automatica de stock. Frontend en React conectado a una API FastAPI con PostgreSQL.",
+    technologies: ["React", "Vite", "React Router", "FastAPI", "PostgreSQL"],
+    features: [
+      "Dashboard con valor de inventario, unidades en stock y alertas de stock bajo",
+      "CRUD de productos, categorias y productores con busqueda y filtros",
+      "Registro de ventas con deduccion automatica de stock en tiempo real",
+      "Operaciones masivas de precios e inventario y API documentada con Swagger",
     ],
-    snackUrl: "[SNACK_URL_GERARDO_APP]",
-  },
-  {
-    name: "Hidroponiac",
-    description:
-      "GUI para controlar y monitorear un cultivo hidroponico. Permite apagar y encender valvulas y bombas del sistema mediante un frontend conectado a Firebase, actualizado por un backend corriendo en un ESP32.",
-    technologies: ["React Native", "Expo", "Firebase Realtime Database", "ESP32"],
-    embedUrl:
-      "https://snack.expo.dev/embedded/@usuario/hidroponiac?preview=true&platform=android",
-    snackUrl: "[SNACK_URL_HIDROPONIAC]",
+    liveUrl: INVENTORY_LIVE_URL,
+    image: {
+      src: inventoryImg,
+      alt: "Dashboard del sistema de Inventory Management",
+    },
   },
   {
     name: "Pixel Draw",
@@ -59,20 +54,52 @@ const projects = [
     snackUrl: "[SNACK_URL_PIXEL_DRAW]",
   },
   {
-    name: "Inventory Management",
+    name: "Hidroponiac",
     description:
-      "Proof of concept de un sistema de gestion de inventario con dashboard, CRUD de productos, categorias y productores, y registro de ventas con deduccion automatica de stock. Frontend en React conectado a una API FastAPI con PostgreSQL.",
-    technologies: ["React", "Vite", "React Router", "FastAPI", "PostgreSQL"],
-    features: [
-      "Dashboard con valor de inventario, unidades en stock y alertas de stock bajo",
-      "CRUD de productos, categorias y productores con busqueda y filtros",
-      "Registro de ventas con deduccion automatica de stock en tiempo real",
-      "Operaciones masivas de precios e inventario y API documentada con Swagger",
+      "GUI para controlar y monitorear un cultivo hidroponico. Permite apagar y encender valvulas y bombas del sistema mediante un frontend conectado a Firebase, actualizado por un backend corriendo en un ESP32.",
+    technologies: ["React Native", "Expo", "Firebase Realtime Database", "ESP32"],
+    embedUrl:
+      "https://snack.expo.dev/embedded/@usuario/hidroponiac?preview=true&platform=android",
+    snackUrl: "[SNACK_URL_HIDROPONIAC]",
+  },
+  {
+    name: "Gerardo App",
+    description:
+      "App para llevar el tracking de la alimentacion de personas de la tercera edad en centros asistenciales. Un medico y los encargados de los pacientes tienen asignadas dietas para que los tres roles puedan controlar la alimentacion del paciente.",
+    technologies: ["React Native", "Expo", "Supabase"],
+    images: [
+      {
+        src: gerardoImg1,
+        alt: "Gerardo App - Pantalla de inicio de sesión",
+      },
+      {
+        src: gerardoImg2,
+        alt: "Gerardo App - Perfil de usuario y navegación",
+      },
     ],
-    liveUrl: INVENTORY_LIVE_URL,
+    snackUrl: "[SNACK_URL_GERARDO_APP]",
+  },
+  {
+    name: "Mi Cultivo",
+    description:
+      "Sistema IoT de monitoreo y control para cultivos hidroponicos. La app recibe datos de sensores en tiempo real desde Firebase y permite consultar metricas, revisar el historico y encender la bomba o la valvula desde el movil.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Firebase Realtime Database",
+      "Material 3",
+    ],
+    features: [
+      "Monitoreo en vivo de temperatura, humedad, pH y nivel de agua con estados de alerta",
+      "Historial de las ultimas 50 lecturas con graficas de tendencia por metrica",
+      "Panel de control para bomba de riego, valvula de llenado y medicion de pH",
+      "Datos sincronizados con Firebase Realtime Database en tiempo real",
+    ],
+    liveUrl: MI_CULTIVO_LIVE_URL,
     image: {
-      src: inventoryImg,
-      alt: "Dashboard del sistema de Inventory Management",
+      src: cultivoImg,
+      alt: "Mi Cultivo - Panel de monitoreo del cultivo hidroponico",
     },
   },
 ];
@@ -220,7 +247,7 @@ function createMobileScreensPreview(images) {
   return wrapper;
 }
 
-function createWebScreenPreview(imageData, liveUrl) {
+function createWebScreenPreview(imageData, liveUrl, projectName) {
   const frame = document.createElement(liveUrl ? "a" : "div");
   frame.className = "browser-window";
   if (liveUrl) {
@@ -229,7 +256,7 @@ function createWebScreenPreview(imageData, liveUrl) {
     frame.rel = "noreferrer";
     frame.setAttribute(
       "aria-label",
-      "Abrir demo en vivo de Inventory Management",
+      `Abrir demo en vivo de ${projectName}`,
     );
   }
 
@@ -248,7 +275,7 @@ function createWebScreenPreview(imageData, liveUrl) {
   address.className = "browser-address";
   address.textContent = liveUrl
     ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
-    : "inventory-management";
+    : projectName;
 
   bar.append(dots, address);
 
@@ -317,7 +344,9 @@ function createProjectCard(project) {
     preview.append(createMobileScreensPreview(project.images));
   } else if (project.image) {
     preview.classList.add("web-preview-mode");
-    preview.append(createWebScreenPreview(project.image, project.liveUrl));
+    preview.append(
+      createWebScreenPreview(project.image, project.liveUrl, project.name),
+    );
   } else if (project.embedUrl) {
     const iframe = document.createElement("iframe");
     iframe.title = project.snackUrl
