@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Brahian Carrera Rodriguez, desarrollador React Native con Expo, React JS, Node JS, Supabase y Firebase."
+    />
+    <title>Brahian Carrera Rodriguez | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="#top" aria-label="Inicio">BCR</a>
+        <div class="nav-links">
+          <a href="#sobre-mi">Sobre mi</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-content">
+          <p class="eyebrow">React Native Expo Developer</p>
+          <h1>Brahian Carrera Rodriguez</h1>
+          <p class="role">Dev / Estudiante de Ingenieria de Sistemas</p>
+          <p class="tagline">
+            Construyo aplicaciones moviles con Expo, experiencias web con React
+            y backends ligeros conectados a Supabase o Firebase.
+          </p>
+
+          <div class="contact-actions" aria-label="Links de contacto">
+            <a class="button primary" href="[GITHUB_URL]" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a class="button" href="[LINKEDIN_URL]" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a class="button ghost" href="mailto:[EMAIL]">Correo</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Resumen tecnico">
+          <div class="panel-header">
+            <span class="status-dot"></span>
+            <span>Portfolio activo</span>
+          </div>
+          <dl class="quick-stats">
+            <div>
+              <dt>Especialidad</dt>
+              <dd>React Native + Expo</dd>
+            </div>
+            <div>
+              <dt>Backend / DB</dt>
+              <dd>Supabase, Firebase, Node JS</dd>
+            </div>
+            <div>
+              <dt>Deploy</dt>
+              <dd>Render, Vercel</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section id="sobre-mi" class="section about-section">
+        <div class="section-heading">
+          <p class="eyebrow">Sobre mi</p>
+          <h2>Perfil profesional</h2>
+        </div>
+        <p>
+          Soy estudiante de Ingenieria de Sistemas de la Universidad de Antioquia
+          (UDEA) y actualmente realizo mi practica en Ayudas Diagnosticas SURA
+          S.A.S. Me enfoco en crear aplicaciones moviles con React Native y Expo,
+          integrando bases de datos, autenticacion y flujos en tiempo real con
+          Supabase o Firebase segun las necesidades del proyecto.
+        </p>
+      </section>
+
+      <section id="proyectos" class="section projects-section">
+        <div class="section-heading">
+          <p class="eyebrow">Proyectos</p>
+          <h2>Apps Expo listas para probar</h2>
+          <p>
+            Cada proyecto incluye un preview embebido de Expo Snack para explorar
+            la app directamente desde el navegador.
+          </p>
+        </div>
+
+        <div id="projects-grid" class="projects-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer id="contacto" class="footer">
+      <div>
+        <strong>Brahian Carrera Rodriguez</strong>
+        <p>Desarrollador React Native con Expo.</p>
+      </div>
+      <div class="footer-links">
+        <a href="[GITHUB_URL]" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="[LINKEDIN_URL]" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:[EMAIL]">Correo</a>
+      </div>
+      <p class="copyright">
+        © <span id="current-year"></span> Brahian Carrera Rodriguez.
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
