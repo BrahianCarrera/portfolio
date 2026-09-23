@@ -1,3 +1,7 @@
+import gerardoImg1 from "./images/gerardo.png";
+import gerardoImg2 from "./images/gerardo-2.png";
+import inventoryImg from "./images/inventory.png";
+
 const PIXEL_DRAW_LIVE_URL =
   "https://pixel-draw-demo-n4j56a7mf-brahiancarreras-projects.vercel.app/";
 
@@ -10,8 +14,16 @@ const projects = [
     description:
       "App para llevar el tracking de la alimentacion de personas de la tercera edad en centros asistenciales. Un medico y los encargados de los pacientes tienen asignadas dietas para que los tres roles puedan controlar la alimentacion del paciente.",
     technologies: ["React Native", "Expo", "Supabase"],
-    embedUrl:
-      "https://snack.expo.dev/embedded/@usuario/gerardo-app?preview=true&platform=android",
+    images: [
+      {
+        src: gerardoImg1,
+        alt: "Gerardo App - Pantalla de inicio de sesión",
+      },
+      {
+        src: gerardoImg2,
+        alt: "Gerardo App - Perfil de usuario y navegación",
+      },
+    ],
     snackUrl: "[SNACK_URL_GERARDO_APP]",
   },
   {
@@ -58,7 +70,10 @@ const projects = [
       "Operaciones masivas de precios e inventario y API documentada con Swagger",
     ],
     liveUrl: INVENTORY_LIVE_URL,
-    embedUrl: INVENTORY_LIVE_URL,
+    image: {
+      src: inventoryImg,
+      alt: "Dashboard del sistema de Inventory Management",
+    },
   },
 ];
 
@@ -177,6 +192,79 @@ function createPixelPreview() {
   return device;
 }
 
+function createMobileScreensPreview(images) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "mobile-screens-wrapper";
+
+  images.forEach((imgData) => {
+    const card = document.createElement("a");
+    card.className = "mobile-screen-card";
+    const src = typeof imgData === "string" ? imgData : imgData.src;
+    const alt =
+      (typeof imgData === "object" && imgData.alt) ||
+      "Captura de pantalla de la app móvil";
+    card.href = src;
+    card.target = "_blank";
+    card.rel = "noreferrer";
+    card.title = "Ver captura en tamaño completo";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = alt;
+    img.loading = "lazy";
+
+    card.append(img);
+    wrapper.append(card);
+  });
+
+  return wrapper;
+}
+
+function createWebScreenPreview(imageData, liveUrl) {
+  const frame = document.createElement(liveUrl ? "a" : "div");
+  frame.className = "browser-window";
+  if (liveUrl) {
+    frame.href = liveUrl;
+    frame.target = "_blank";
+    frame.rel = "noreferrer";
+    frame.setAttribute(
+      "aria-label",
+      "Abrir demo en vivo de Inventory Management",
+    );
+  }
+
+  const bar = document.createElement("div");
+  bar.className = "browser-bar";
+
+  const dots = document.createElement("div");
+  dots.className = "browser-dots";
+  ["red", "yellow", "green"].forEach((color) => {
+    const dot = document.createElement("span");
+    dot.className = `browser-dot ${color}`;
+    dots.append(dot);
+  });
+
+  const address = document.createElement("div");
+  address.className = "browser-address";
+  address.textContent = liveUrl
+    ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
+    : "inventory-management";
+
+  bar.append(dots, address);
+
+  const img = document.createElement("img");
+  const src = typeof imageData === "string" ? imageData : imageData.src;
+  const alt =
+    (typeof imageData === "object" && imageData.alt) ||
+    "Captura de pantalla del sistema";
+  img.src = src;
+  img.alt = alt;
+  img.loading = "lazy";
+
+  frame.append(bar, img);
+  return frame;
+}
+
 function createProjectCard(project) {
   const article = document.createElement("article");
   article.className = "project-card";
@@ -211,12 +299,12 @@ function createProjectCard(project) {
     action.classList.add("primary");
     action.href = project.liveUrl;
     action.textContent = "Ver demo en vivo";
-  } else {
+    content.append(action);
+  } else if (project.snackUrl) {
     action.href = project.snackUrl;
     action.textContent = "Abrir en Expo Snack";
+    content.append(action);
   }
-
-  content.append(action);
 
   const preview = document.createElement("div");
   preview.className = "snack-preview";
@@ -224,7 +312,13 @@ function createProjectCard(project) {
   if (project.preview === "pixel-draw") {
     preview.classList.add("pixel-preview");
     preview.append(createPixelPreview());
-  } else {
+  } else if (project.images?.length) {
+    preview.classList.add("images-preview-mode");
+    preview.append(createMobileScreensPreview(project.images));
+  } else if (project.image) {
+    preview.classList.add("web-preview-mode");
+    preview.append(createWebScreenPreview(project.image, project.liveUrl));
+  } else if (project.embedUrl) {
     const iframe = document.createElement("iframe");
     iframe.title = project.snackUrl
       ? `Preview de ${project.name} en Expo Snack`
