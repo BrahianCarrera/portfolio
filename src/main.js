@@ -82,24 +82,25 @@ const projects = [
   {
     name: "Mi Cultivo",
     description:
-      "Sistema IoT de monitoreo y control para cultivos hidroponicos. La app recibe datos de sensores en tiempo real desde Firebase y permite consultar metricas, revisar el historico y encender la bomba o la valvula desde el movil.",
+      "Mismo proyecto que Hidroponiac: sistema IoT para monitorear y controlar un cultivo hidroponico. Un backend en ESP32 publica las lecturas de los sensores en Firebase y la app permite consultar metricas en vivo, revisar el historico y encender la bomba o la valvula desde el movil.",
     technologies: [
       "React Native",
       "Expo",
       "TypeScript",
       "Firebase Realtime Database",
-      "Material 3",
+      "ESP32",
     ],
     features: [
       "Monitoreo en vivo de temperatura, humedad, pH y nivel de agua con estados de alerta",
       "Historial de las ultimas 50 lecturas con graficas de tendencia por metrica",
       "Panel de control para bomba de riego, valvula de llenado y medicion de pH",
-      "Datos sincronizados con Firebase Realtime Database en tiempo real",
+      "Backend en ESP32 que sincroniza los sensores con Firebase Realtime Database",
     ],
     liveUrl: MI_CULTIVO_LIVE_URL,
     image: {
       src: cultivoImg,
       alt: "Mi Cultivo - Panel de monitoreo del cultivo hidroponico",
+      half: true,
     },
   },
 ];
@@ -247,17 +248,26 @@ function createMobileScreensPreview(images) {
   return wrapper;
 }
 
-function createWebScreenPreview(imageData, liveUrl, projectName) {
-  const frame = document.createElement(liveUrl ? "a" : "div");
+function formatAddress(url, fallback) {
+  if (!url) return fallback;
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
+function getPreviewAddress(project) {
+  return formatAddress(
+    project.liveUrl || project.embedUrl,
+    project.name,
+  );
+}
+
+function createBrowserWindow({ address, href, label }) {
+  const frame = document.createElement(href ? "a" : "div");
   frame.className = "browser-window";
-  if (liveUrl) {
-    frame.href = liveUrl;
+  if (href) {
+    frame.href = href;
     frame.target = "_blank";
     frame.rel = "noreferrer";
-    frame.setAttribute(
-      "aria-label",
-      `Abrir demo en vivo de ${projectName}`,
-    );
+    if (label) frame.setAttribute("aria-label", label);
   }
 
   const bar = document.createElement("div");
@@ -271,13 +281,21 @@ function createWebScreenPreview(imageData, liveUrl, projectName) {
     dots.append(dot);
   });
 
-  const address = document.createElement("div");
-  address.className = "browser-address";
-  address.textContent = liveUrl
-    ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
-    : projectName;
+  const addressEl = document.createElement("div");
+  addressEl.className = "browser-address";
+  addressEl.textContent = address;
 
-  bar.append(dots, address);
+  bar.append(dots, addressEl);
+  frame.append(bar);
+  return frame;
+}
+
+function createWebScreenPreview(imageData, liveUrl, projectName) {
+  const frame = createBrowserWindow({
+    address: formatAddress(liveUrl, projectName),
+    href: liveUrl,
+    label: liveUrl ? `Abrir demo en vivo de ${projectName}` : undefined,
+  });
 
   const img = document.createElement("img");
   const src = typeof imageData === "string" ? imageData : imageData.src;
@@ -288,7 +306,7 @@ function createWebScreenPreview(imageData, liveUrl, projectName) {
   img.alt = alt;
   img.loading = "lazy";
 
-  frame.append(bar, img);
+  frame.append(img);
   return frame;
 }
 
@@ -336,18 +354,34 @@ function createProjectCard(project) {
   const preview = document.createElement("div");
   preview.className = "snack-preview";
 
+  const browserWindow = () =>
+    createBrowserWindow({
+      address: getPreviewAddress(project),
+      href: project.liveUrl,
+      label: project.liveUrl
+        ? `Abrir demo en vivo de ${project.name}`
+        : undefined,
+    });
+
   if (project.preview === "pixel-draw") {
     preview.classList.add("pixel-preview");
-    preview.append(createPixelPreview());
+    const frame = browserWindow();
+    frame.append(createPixelPreview());
+    preview.append(frame);
   } else if (project.images?.length) {
     preview.classList.add("images-preview-mode");
-    preview.append(createMobileScreensPreview(project.images));
+    const frame = browserWindow();
+    frame.append(createMobileScreensPreview(project.images));
+    preview.append(frame);
   } else if (project.image) {
     preview.classList.add("web-preview-mode");
+    if (project.image.half) preview.classList.add("preview-half");
     preview.append(
       createWebScreenPreview(project.image, project.liveUrl, project.name),
     );
   } else if (project.embedUrl) {
+    preview.classList.add("embed-preview-mode");
+    const frame = browserWindow();
     const iframe = document.createElement("iframe");
     iframe.title = project.snackUrl
       ? `Preview de ${project.name} en Expo Snack`
@@ -356,7 +390,8 @@ function createProjectCard(project) {
     iframe.allow =
       "accelerometer; camera; encrypted-media; gyroscope; picture-in-picture";
     iframe.loading = "lazy";
-    preview.append(iframe);
+    frame.append(iframe);
+    preview.append(frame);
   }
 
   article.append(content, preview);
