@@ -2,6 +2,7 @@ import gerardoImg1 from "./images/gerardo.png";
 import gerardoImg2 from "./images/gerardo-2.png";
 import inventoryImg from "./images/inventory.png";
 import cultivoImg from "./images/cultivo.png";
+import cultivoImg2 from "./images/cultivo2.png";
 
 const PIXEL_DRAW_LIVE_URL =
   "https://pixel-draw-demo-n4j56a7mf-brahiancarreras-projects.vercel.app/";
@@ -37,7 +38,7 @@ const projects = [
     technologies: [
       "React Native",
       "Expo",
-      "React Native Skia",
+      "Supabase",
       "TypeScript",
       "Android Widget",
     ],
@@ -52,15 +53,6 @@ const projects = [
     embedUrl:
       "https://snack.expo.dev/embedded/@usuario/pixel-draw?preview=true&platform=android",
     snackUrl: "[SNACK_URL_PIXEL_DRAW]",
-  },
-  {
-    name: "Hidroponiac",
-    description:
-      "GUI para controlar y monitorear un cultivo hidroponico. Permite apagar y encender valvulas y bombas del sistema mediante un frontend conectado a Firebase, actualizado por un backend corriendo en un ESP32.",
-    technologies: ["React Native", "Expo", "Firebase Realtime Database", "ESP32"],
-    embedUrl:
-      "https://snack.expo.dev/embedded/@usuario/hidroponiac?preview=true&platform=android",
-    snackUrl: "[SNACK_URL_HIDROPONIAC]",
   },
   {
     name: "Gerardo App",
@@ -97,11 +89,16 @@ const projects = [
       "Backend en ESP32 que sincroniza los sensores con Firebase Realtime Database",
     ],
     liveUrl: MI_CULTIVO_LIVE_URL,
-    image: {
-      src: cultivoImg,
-      alt: "Mi Cultivo - Panel de monitoreo del cultivo hidroponico",
-      half: true,
-    },
+    images: [
+      {
+        src: cultivoImg,
+        alt: "Mi Cultivo - Panel de monitoreo del cultivo hidroponico",
+      },
+      {
+        src: cultivoImg2,
+        alt: "Mi Cultivo - Segunda pantalla del panel de cultivo",
+      },
+    ],
   },
 ];
 
@@ -375,7 +372,6 @@ function createProjectCard(project) {
     preview.append(frame);
   } else if (project.image) {
     preview.classList.add("web-preview-mode");
-    if (project.image.half) preview.classList.add("preview-half");
     preview.append(
       createWebScreenPreview(project.image, project.liveUrl, project.name),
     );
