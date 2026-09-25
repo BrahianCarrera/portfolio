@@ -34,19 +34,19 @@ const projects = [
   {
     name: "Pixel Draw",
     description:
-      "App universal (web, Android e iOS) para compartir arte en pixeles con tu persona favorita en tiempo real. Los dibujos se reflejan al instante en la pareja, se guardan en una galeria colaborativa y pueden aparecer en el widget del telefono sin abrir la app.",
+      "App universal (web, Android) para compartir arte en pixeles con tu persona favorita en tiempo real. Los dibujos se reflejan al instante en el cliente, se guardan en una galeria colaborativa y pueden aparecer en el widget del telefono.",
     technologies: [
       "React Native",
       "Expo",
       "Supabase",
       "TypeScript",
-      "Android Widget",
+      "Node js + Express",
     ],
     features: [
-      "Lienzo de pixel art 16x16 y 32x32 con lapiz, borrador, cubo de relleno, cuentagotas y deshacer",
-      "Sincronizacion en pareja con codigos de invitacion PX-XXXXXX",
+      "Lienzo de pixel art con lapiz, borrador, cubo de relleno, cuentagotas y deshacer",
+      "Sincronizacion en pareja con codigos de invitacion",
       "Galeria colaborativa con paleta dominante, cobertura y autor de cada obra",
-      "Widget de pantalla de inicio con notificaciones push en Android e iOS",
+      "Widget de pantalla de inicio con notificaciones push de nuevas obras y actualizaciones en tiempo real",
     ],
     liveUrl: PIXEL_DRAW_LIVE_URL,
     preview: "pixel-draw",
@@ -54,27 +54,11 @@ const projects = [
       "https://snack.expo.dev/embedded/@usuario/pixel-draw?preview=true&platform=android",
     snackUrl: "[SNACK_URL_PIXEL_DRAW]",
   },
-  {
-    name: "Gerardo App",
-    description:
-      "App para llevar el tracking de la alimentacion de personas de la tercera edad en centros asistenciales. Un medico y los encargados de los pacientes tienen asignadas dietas para que los tres roles puedan controlar la alimentacion del paciente.",
-    technologies: ["React Native", "Expo", "Supabase"],
-    images: [
-      {
-        src: gerardoImg1,
-        alt: "Gerardo App - Pantalla de inicio de sesión",
-      },
-      {
-        src: gerardoImg2,
-        alt: "Gerardo App - Perfil de usuario y navegación",
-      },
-    ],
-    snackUrl: "[SNACK_URL_GERARDO_APP]",
-  },
+  
   {
     name: "Mi Cultivo",
     description:
-      "Mismo proyecto que Hidroponiac: sistema IoT para monitorear y controlar un cultivo hidroponico. Un backend en ESP32 publica las lecturas de los sensores en Firebase y la app permite consultar metricas en vivo, revisar el historico y encender la bomba o la valvula desde el movil.",
+      "Sistema IoT para monitorear y controlar un cultivo hidroponico. Un backend en ESP32 publica las lecturas de los sensores en Firebase y la app permite consultar metricas en vivo, revisar el historico y encender la bomba o la valvula desde el movil.",
     technologies: [
       "React Native",
       "Expo",
@@ -99,6 +83,29 @@ const projects = [
         alt: "Mi Cultivo - Segunda pantalla del panel de cultivo",
       },
     ],
+  },
+  {
+    name: "Gerardo App",
+    description:
+      "App para llevar el tracking de la alimentacion de personas de la tercera edad en centros asistenciales. Un medico y los encargados de los pacientes tienen asignadas dietas para que los tres roles puedan controlar la alimentacion del paciente. Probada con un centro asistencial a cargo de la UPB.",
+    technologies: ["React Native", "Expo", "Supabase", "Expo MailComposer", "SendGrid"],
+    features: [
+      "Alarmas de dieta y control de ingesta de medicamentos para pacientes",
+      "Roles de usuario para medicos, encargados y pacientes con permisos diferenciados",
+      "Dietas y planes de alimentación asignados a cada paciente por el especialista",
+      "Registro de alimentos ingeridos y seguimiento de la dieta en tiempo real",
+    ],
+    images: [
+      {
+        src: gerardoImg1,
+        alt: "Gerardo App - Pantalla de inicio de sesión",
+      },
+      {
+        src: gerardoImg2,
+        alt: "Gerardo App - Perfil de usuario y navegación",
+      },
+    ],
+    liveUrl: "https://proyecto-gerardo.vercel.app/",
   },
 ];
 
