@@ -3,6 +3,7 @@ import gerardoImg2 from "./images/gerardo-2.png";
 import inventoryImg from "./images/inventory.png";
 import cultivoImg from "./images/cultivo.png";
 import cultivoImg2 from "./images/cultivo2.png";
+import { OceanEngine } from "./lib/ascii-sharks";
 
 const PIXEL_DRAW_LIVE_URL =
   "https://pixel-draw-demo-n4j56a7mf-brahiancarreras-projects.vercel.app/";
@@ -406,3 +407,130 @@ projects.forEach((project) => {
 });
 
 currentYear.textContent = new Date().getFullYear();
+
+const oceanCanvas = document.querySelector(".ocean-canvas");
+
+// Vistas conmutadas por el navbar: el hash (#sobre-mi, etc.) gobierna cuál
+// se muestra, asi back/forward del navegador sigue funcionando.
+const views = Array.from(document.querySelectorAll(".view"));
+const viewLinks = Array.from(document.querySelectorAll("[data-view-link]"));
+
+function showView(viewId) {
+  views.forEach((view) => {
+    view.hidden = view.id !== viewId;
+  });
+  viewLinks.forEach((link) => {
+    if (link.dataset.viewLink === viewId) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+function viewIdFromHash() {
+  const id = location.hash.slice(1);
+  return views.some((view) => view.id === id) ? id : "inicio";
+}
+
+window.addEventListener("hashchange", () => showView(viewIdFromHash()));
+
+showView(viewIdFromHash());
+
+if (oceanCanvas) {
+  new OceanEngine(oceanCanvas, [
+    { kind: "thresher", size: 1 },
+    { kind: "hammerhead", size: 0.9 },
+    { kind: "mako", size: 0.8 },
+    { kind: "nurse", size: 0.7 },
+  ]);
+}
+
+// Formulario de contacto: el sitio es estatico (sin backend), asi que el
+// submit compone el mensaje y abre Gmail listo para enviar; si el visitante
+// no usa Gmail, el boton de copiar y el mailto directo son el respaldo.
+const CONTACT_EMAIL = "brahian.carrera@udea.edu.co";
+const contactForm = document.querySelector("#contact-form");
+
+if (contactForm) {
+  const nameInput = contactForm.querySelector("#cf-name");
+  const emailInput = contactForm.querySelector("#cf-email");
+  const topicInput = contactForm.querySelector("#cf-topic");
+  const messageInput = contactForm.querySelector("#cf-message");
+  const formError = contactForm.querySelector("#form-error");
+  const formStatus = contactForm.querySelector("#form-status");
+  const copyButton = contactForm.querySelector("#copy-message");
+
+  let preparedText = "";
+
+  function showFieldError(field, message) {
+    formError.textContent = message;
+    formError.hidden = false;
+    field.setAttribute("aria-invalid", "true");
+    field.focus();
+  }
+
+  function clearErrors() {
+    formError.hidden = true;
+    formError.textContent = "";
+    [nameInput, emailInput, messageInput].forEach((field) =>
+      field.removeAttribute("aria-invalid"),
+    );
+  }
+
+  contactForm.addEventListener("input", clearErrors);
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    clearErrors();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const topic = topicInput.value;
+    const message = messageInput.value.trim();
+
+    if (!name) {
+      showFieldError(nameInput, "Escribe tu nombre para saber quién me escribe.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFieldError(
+        emailInput,
+        "Revisa el correo: necesita un formato como nombre@dominio.com.",
+      );
+      return;
+    }
+    if (!message) {
+      showFieldError(
+        messageInput,
+        "Cuéntame brevemente el motivo de tu mensaje.",
+      );
+      return;
+    }
+
+    const subject = `Portfolio — ${topic} — ${name}`;
+    preparedText = [message, "", "—", name, email, `Motivo: ${topic}`].join(
+      "\n",
+    );
+
+    const composeUrl =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=${encodeURIComponent(CONTACT_EMAIL)}` +
+      `&su=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(preparedText)}`;
+
+    window.open(composeUrl, "_blank", "noopener");
+    formStatus.hidden = false;
+  });
+
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(preparedText);
+      copyButton.textContent = "Mensaje copiado";
+      copyButton.disabled = true;
+    } catch (error) {
+      copyButton.textContent = "No se pudo copiar";
+    }
+  });
+}

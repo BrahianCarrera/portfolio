@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio de Brahian Carrera Rodriguez, desarrollador React Native con Expo, React JS, Node JS, Supabase y Firebase."
+      content="Portfolio de Brahian Carrera Rodriguez, desarrollador junior con React Native y Expo, React, Node JS, Supabase y Firebase."
     />
     <title>Brahian Carrera Rodriguez | Developer Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,82 +16,235 @@
     />
     <link rel="stylesheet" href="/src/styles.css" />
     <link rel="icon" type="image/x-icon" href="/src/images/logo.ico" />
+    <noscript>
+      <style>
+        /* Sin JS no hay conmutador de vistas: todas las secciones se apilan. */
+        .view[hidden] {
+          display: block !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <header class="site-header">
       <nav class="nav" aria-label="Navegacion principal">
-        <a class="brand" href="#top" aria-label="Inicio">
+        <a class="brand" href="#inicio" aria-label="Inicio">
           <img src="/src/images/logo.png" alt="Brahian Carrera Rodriguez" />
         </a>
-        <div class="nav-links">
-          <a href="#sobre-mi">Sobre mi</a>
-          <a href="#proyectos">Proyectos</a>
-          <a href="#contacto">Contacto</a>
+        <div class="nav-actions">
+          <div class="nav-links">
+            <a href="#sobre-mi" data-view-link="sobre-mi">Sobre mi</a>
+            <a href="#proyectos" data-view-link="proyectos">Proyectos</a>
+            <a href="#contacto" data-view-link="contacto">Contacto</a>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero section">
-        <div class="hero-content">
-          <p class="eyebrow">React Native Expo Developer</p>
-          <h1>Brahian Carrera Rodriguez</h1>
-          <p class="role">Dev / Ingenierio de Sistemas</p>
-          <p class="tagline">
-            Construyo experiencias web con React, backends ligeros conectados a Supabase o Firebase y 
-            aplicaciones moviles con Expo.
-          </p>
+    <main>
+      <section id="inicio" class="view view-landing">
+        <canvas class="ocean-canvas" aria-hidden="true"></canvas>
+        <div class="hero section">
+          <div class="hero-content">
+            <h1>Brahian Carrera Rodriguez</h1>
+            <p class="role">Desarrollador Junior · Ingeniero de Sistemas</p>
+            <p class="tagline">
+              Construyo aplicaciones web y móviles con React y Expo, backends en
+              Node y FastAPI, y despliegues con Docker y CI/CD.
+            </p>
 
-          <div class="contact-actions" aria-label="Links de contacto">
-            <a class="button primary" href="https://github.com/BrahianCarrera" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-            <a class="button" href="https://www.linkedin.com/in/brahian-carrera-rodr%C3%ADguez-a792022b6/" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <a class="button ghost" href="mailto:brahian.carrera@udea.edu.co">Correo</a>
+            <div class="contact-actions" aria-label="Links de contacto">
+              <a class="button primary" href="https://github.com/BrahianCarrera" target="_blank" rel="noreferrer">
+                <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"></path>
+                </svg>
+                GitHub
+              </a>
+              <a class="button" href="https://www.linkedin.com/in/brahian-carrera-rodr%C3%ADguez-a792022b6/" target="_blank" rel="noreferrer">
+                <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+                </svg>
+                LinkedIn
+              </a>
+              <a class="button ghost" href="mailto:brahian.carrera@udea.edu.co">
+                <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"></path>
+                </svg>
+                Correo
+              </a>
+            </div>
           </div>
+
+          <aside class="hero-panel" aria-label="Resumen tecnico">
+            <dl class="quick-stats">
+              <div>
+                <dt>Frontend</dt>
+                <dd>React, React Native, Expo, Astro</dd>
+              </div>
+              <div>
+                <dt>Backend</dt>
+                <dd>FastAPI, Node.js, Express, REST</dd>
+              </div>
+              <div>
+                <dt>Datos</dt>
+                <dd>PostgreSQL, MySQL, Supabase, Firebase</dd>
+              </div>
+              <div>
+                <dt>DevOps</dt>
+                <dd>Docker, GitHub Actions, Azure DevOps</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
-
-        <aside class="hero-panel" aria-label="Resumen tecnico">
-          <div class="panel-header">
-            <span class="status-dot"></span>
-            <span>Portfolio activo</span>
-          </div>
-          <dl class="quick-stats">
-            <div>
-              <dt>Especialidad</dt>
-              <dd>Full-Stack Web + Mobile</dd>
-            </div>
-            <div>
-              <dt>Frontend</dt>
-              <dd>React, Next.js, React Native + Expo</dd>
-            </div>
-            <div>
-              <dt>Backend / DB</dt>
-              <dd>Node.js, PHP, Python, PostgreSQL, MySQL</dd>
-            </div>
-            <div>
-              <dt>Deploy</dt>
-              <dd>Docker, Firebase, Vercel, Render</dd>
-            </div>
-          </dl>
-        </aside>
       </section>
 
-      <section id="sobre-mi" class="section about-section">
-        <div class="section-heading">
-          
+      <section id="sobre-mi" class="view section about-view" hidden>
+        <div class="about-intro">
           <p class="eyebrow">Sobre mi</p>
           <h2>Perfil profesional</h2>
+          <p class="lead">
+            Ingeniero de Sistemas y desarrollador junior con experiencia
+            construyendo aplicaciones web y móviles de punta a punta: desde la
+            base de datos y la API hasta la interfaz y el despliegue. Trabajo con
+            React y TypeScript, Python (FastAPI) y PostgreSQL, y automatizo
+            calidad y despliegues con GitHub Actions, Azure DevOps y Docker.
+            Actualmente desarrollo soluciones como freelancer y busco un equipo
+            donde seguir creciendo en arquitectura y entrega continua.
+          </p>
         </div>
-        <p>
-Desarrollador Full-Stack con experiencia en la construcción de aplicaciones web y móviles de punta a punta, desde APIs y bases de datos hasta interfaces y despliegue. Trabajo principalmente con React, TypeScript, Python, FastAPI y PostgreSQL, complementando el desarrollo con Docker, CI/CD y automatización de calidad.
 
-Experiencia en entornos institucionales como Grupo SURA y la Universidad de Antioquia. Ingeniero de Sistemas de la Universidad de Antioquia e inglés C1.        </p>
+        <div class="about-grid">
+          <div class="about-main">
+            <h3 class="about-subhead">Experiencia</h3>
+            <ol class="experience-list">
+              <li class="experience-item">
+                <div class="experience-head">
+                  <h4 class="experience-role">Ingeniero de Datos Junior</h4>
+                  <span class="experience-date">feb — ago 2026</span>
+                </div>
+                <p class="experience-org">Ayudas Diagnósticas Sura</p>
+                <ul class="feature-list experience-points">
+                  <li>
+                    Dashboards interactivos con Streamlit para el monitoreo en
+                    tiempo real del etiquetado de radiografías.
+                  </li>
+                  <li>
+                    Plataforma web para el etiquetado de imágenes médicas con
+                    persistencia en Supabase y despliegue en infraestructura
+                    cloud.
+                  </li>
+                  <li>
+                    Pipelines de CI/CD en Azure DevOps con validaciones
+                    integradas; calidad del código con Git, Ruff y pre-commit.
+                  </li>
+                </ul>
+                <div class="tags" aria-label="Tecnologias en Ayudas Diagnosticas Sura">
+                  <span class="tag">Python</span>
+                  <span class="tag">Streamlit</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">Azure DevOps</span>
+                  <span class="tag">Ruff</span>
+                </div>
+              </li>
+
+              <li class="experience-item">
+                <div class="experience-head">
+                  <h4 class="experience-role">Desarrollador Web</h4>
+                  <span class="experience-date">jul 2025 — oct 2026</span>
+                </div>
+                <p class="experience-org">
+                  Universidad de Antioquia · Escuela de Idiomas
+                </p>
+                <ul class="feature-list experience-points">
+                  <li>
+                    Plataforma web para la gestión de los procesos internos de la
+                    Escuela de Idiomas con Node.js, Astro, APIs REST y MySQL.
+                  </li>
+                  <li>
+                    Sistema de solicitudes y flujos de aprobación con
+                    trazabilidad de extremo a extremo para usuarios y
+                    administrativos.
+                  </li>
+                  <li>
+                    Servicios contenedizados y desplegados con Docker, Nginx y
+                    Git, optimizando la entrega de nuevas versiones.
+                  </li>
+                </ul>
+                <div class="tags" aria-label="Tecnologias en la Universidad de Antioquia">
+                  <span class="tag">Node.js</span>
+                  <span class="tag">Astro</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">APIs REST</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">Nginx</span>
+                </div>
+              </li>
+            </ol>
+
+            <h3 class="about-subhead">Formación</h3>
+            <ul class="education-list">
+              <li>
+                <span class="edu-place">Universidad de Antioquia</span>
+                <span class="edu-date">2020 — 2026</span>
+                <span class="edu-degree">Ingeniería de Sistemas</span>
+              </li>
+              <li>
+                <span class="edu-place">SENA</span>
+                <span class="edu-date">2018 — 2019</span>
+                <span class="edu-degree">Tecnología en Desarrollo de Software</span>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="about-side" aria-label="Skills e idiomas">
+            <h3 class="about-subhead">Skills</h3>
+            <dl class="skills-list">
+              <div>
+                <dt>Lenguajes</dt>
+                <dd>Python, TypeScript, JavaScript, SQL, Java</dd>
+              </div>
+              <div>
+                <dt>Frontend</dt>
+                <dd>React, React Native, Expo, Astro, Tailwind</dd>
+              </div>
+              <div>
+                <dt>Backend</dt>
+                <dd>FastAPI, Node.js, Express, JWT, OpenAPI</dd>
+              </div>
+              <div>
+                <dt>Bases de datos</dt>
+                <dd>PostgreSQL, MySQL, Supabase, Firebase</dd>
+              </div>
+              <div>
+                <dt>DevOps y Cloud</dt>
+                <dd>Docker, Nginx, GitHub Actions, Azure DevOps, Linux</dd>
+              </div>
+              <div>
+                <dt>QA y Testing</dt>
+                <dd>pytest, Vitest, Ruff, pre-commit</dd>
+              </div>
+              <div>
+                <dt>Otros</dt>
+                <dd>Streamlit, Figma, Scrum</dd>
+              </div>
+            </dl>
+
+            <h3 class="about-subhead">Idiomas</h3>
+            <ul class="language-list">
+              <li>
+                <span class="language-name">Español</span>
+                <span class="language-level">Nativo</span>
+              </li>
+              <li>
+                <span class="language-name">Inglés</span>
+                <span class="language-level">B2 (Marco Europeo)</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
-      <section id="proyectos" class="section projects-section">
+      <section id="proyectos" class="view section projects-section" hidden>
         <div class="section-heading">
           <p class="eyebrow">Proyectos</p>
           <h2>Apps listas para probar</h2>
@@ -103,22 +256,118 @@ Experiencia en entornos institucionales como Grupo SURA y la Universidad de Anti
 
         <div id="projects-grid" class="projects-grid" aria-live="polite"></div>
       </section>
-    </main>
 
-    <footer id="contacto" class="footer">
-      <div>
-        <strong>Brahian Carrera Rodriguez</strong>
-        <p>Desarrollador Fullstack</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/BrahianCarrera" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/brahian-carrera-rodr%C3%ADguez-a792022b6/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="mailto:brahian.carrera@udea.edu.co">Correo</a>
-      </div>
-      <p class="copyright">
-        © <span id="current-year"></span> Brahian Carrera Rodriguez.
-      </p>
-    </footer>
+      <section id="contacto" class="view view-contact" hidden>
+        <div class="contact-inner">
+          <h2>Contacto</h2>
+          <p class="contact-lead">
+            Estoy disponible para oportunidades junior y proyectos freelance.
+            Cuéntame qué necesitas y te respondo lo antes posible.
+          </p>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="cf-name">Nombre</label>
+                <input
+                  id="cf-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  placeholder="Cómo quieres que te llame"
+                />
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input
+                  id="cf-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  placeholder="nombre@dominio.com"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cf-topic">Motivo</label>
+              <select id="cf-topic" name="topic">
+                <option>Oferta de trabajo</option>
+                <option>Proyecto freelance</option>
+                <option>Colaboración</option>
+                <option>Otra consulta</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="cf-message">Mensaje</label>
+              <textarea
+                id="cf-message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Cuéntame sobre el puesto, el proyecto o la idea…"
+              ></textarea>
+            </div>
+
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+
+            <button class="button primary" type="submit">Preparar mensaje</button>
+
+            <noscript>
+              <p class="form-note">
+                Este formulario necesita JavaScript. También puedes escribirme
+                directamente a
+                <a href="mailto:brahian.carrera@udea.edu.co">brahian.carrera@udea.edu.co</a>.
+              </p>
+            </noscript>
+
+            <p class="form-note">
+              Se abrirá Gmail con el mensaje listo para enviar. ¿Usas otro
+              correo? Escríbeme a
+              <a href="mailto:brahian.carrera@udea.edu.co">brahian.carrera@udea.edu.co</a>.
+            </p>
+
+            <div id="form-status" class="form-status" role="status" hidden>
+              <p>
+                Si no se abrió nada, copia el mensaje y envíalo desde tu
+                correo.
+              </p>
+              <button id="copy-message" class="button" type="button">
+                Copiar mensaje
+              </button>
+            </div>
+          </form>
+
+          <div class="footer-links">
+            <a href="https://github.com/BrahianCarrera" target="_blank" rel="noreferrer">
+              <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"></path>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/brahian-carrera-rodr%C3%ADguez-a792022b6/" target="_blank" rel="noreferrer">
+              <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="mailto:brahian.carrera@udea.edu.co">
+              <svg class="icon-brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"></path>
+              </svg>
+              Correo
+            </a>
+          </div>
+
+          <p class="copyright">
+            © <span id="current-year"></span> Brahian Carrera Rodriguez.
+          </p>
+        </div>
+      </section>
+    </main>
 
     <script type="module" src="/src/main.js"></script>
   </body>
